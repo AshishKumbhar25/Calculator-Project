@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #3498db;
+        }
+
+        main {
+            text-align: center;
+            padding:10px;
+        }
+
+        .calculatorBody {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            text-align: left;
+            font-size: 24px;
+            border: none;
+            outline: none;
+            border: 2px solid black;
+        }
+
+        input[type="button"] {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="button"].in {
+            background-color: #ecf0f1;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="calculatorBody">
+
+            <table>
+
+                <tr>
+                    <td colspan="4"> <input type="text" id="myResult" placeholder="Result"> </td>
+
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="00" class="in"></td>
+                    <td><input type="button" value="AC" id="AC"></td>
+                    <td><input type="button" value="C" id="C"></td>
+                    <td><input type="button" value="=" onclick="solve()"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="7" class="in"></td>
+                    <td><input type="button" value="8" class="in"></td>
+                    <td><input type="button" value="9" class="in"></td>
+                    <td><input type="button" value="+" class="in"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="4" class="in"></td>
+                    <td><input type="button" value="5" class="in"></td>
+                    <td><input type="button" value="6" class="in"></td>
+                    <td><input type="button" value="-" class="in"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="1" class="in"></td>
+                    <td><input type="button" value="2" class="in"></td>
+                    <td><input type="button" value="3" class="in"></td>
+                    <td><input type="button" value="*" class="in"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="0" class="in"></td>
+                    <td><input type="button" value="." class="in"></td>
+                    <td><input type="button" value="/" class="in"></td>
+                    <td><input type="button" value="%" class="in"></td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </main>
+
+    <script>
+        let myResult = document.getElementById("myResult");
+        let inputs = document.querySelectorAll("input.in");
+        let ac = document.getElementById("AC");
+        let c = document.getElementById("C");
+
+        console.log(inputs.length);
+        console.log(inputs);
+
+        inputs.forEach(x => {
+            console.log(x);
+
+            x.addEventListener("click", () => {
+                myResult.value += x.value;
+            })
+        });
+
+        ac.addEventListener("click", () => {
+            myResult.value = "";
+        })
+
+        function solve() {
+            myResult.value = eval(myResult.value);
+        }
+
+        c.addEventListener("click", () => {
+            myResult.value = myResult.value.slice(0, myResult.value.length - 1);
+        })
+    </script>
+
+</body>
+
+</html>
